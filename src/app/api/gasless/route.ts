@@ -8,7 +8,7 @@ import {
   SEPOLIA_BASE_URL,
 } from "@avnu/gasless-sdk";
 
-export async function POST(req: Request) {
+export async function GET(req: Request) {
   const provider = new RpcProvider({
     nodeUrl: `https://starknet-sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`, // sepolia
   });
@@ -28,7 +28,8 @@ export async function POST(req: Request) {
         "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7", // ETH
       calldata: [
         "0x03dc2f3741106ec05307963159bfcff41e661722bc9349f9dc565f2540df9561", // spender
-        "0x0", // 0
+        "0x2", // 0
+        "0x0"
       ],
     },
   ];
@@ -62,7 +63,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         signature,
-        typedData,
+        typedData: JSON.stringify(typedData),
         userAddress: operatorAccount.address,
       }),
     },
@@ -91,15 +92,15 @@ export async function POST(req: Request) {
 
   // 2️⃣ fetchExecuteTransaction
 
-  // const executeData = await fetchExecuteTransaction(
-  //   operatorAccount.address,
-  //   JSON.stringify(typedData),
-  //   signature,
-  //   {
-  //     apiKey: process.env.ANVU_API_KEY!,
-  //     baseUrl: SEPOLIA_BASE_URL,
-  //   },
-  // );
+/*  const executeData = await fetchExecuteTransaction(
+    operatorAccount.address,
+    JSON.stringify(typedData),
+    signature,
+    {
+      apiKey: process.env.ANVU_API_KEY!,
+      baseUrl: SEPOLIA_BASE_URL,
+    },
+  );*/
 
   // // ❌❌Error❌❌: 500 Internal Server Error
   // at parseResponse (webpack-internal:///(rsc)/./node_modules/@avnu/gasless-sdk/dist/index.mjs:71:11)
