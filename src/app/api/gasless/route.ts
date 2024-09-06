@@ -8,7 +8,7 @@ import {
   SEPOLIA_BASE_URL,
 } from "@avnu/gasless-sdk";
 
-export async function POST(req: Request) {
+export async function GET(req: Request) {
   const provider = new RpcProvider({
     nodeUrl: constants.NetworkName.SN_SEPOLIA,
   });
